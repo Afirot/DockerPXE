@@ -1,0 +1,20 @@
+#!ipxe
+:menu
+menu Menu de Arranque
+item --gap -- ==================OPCIONES====================
+item kali Arrancar KaliLinux Live
+item forensic Arrancar KaliLinux Live Forensic Mode
+choose --timeout 5000 --default kali target
+
+:kali
+echo Iniciando el sistema kali ....
+kernel http://10.10.10.1/kali/live/vmlinuz boot=live fetch=http://10.10.10.1/kali/live/filesystem.squashfs
+initrd http://10.10.10.1/kali/live/initrd.img
+boot
+
+:forensic
+echo Iniciando el sistema kali (Forensic)....
+kernel http://10.10.10.1/kali/live/vmlinuz boot=forensic fetch=http://10.10.10.1/kali/live/filesystem.squashfs
+initrd http://10.10.10.1/kali/live/initrd.img
+boot
+

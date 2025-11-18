@@ -1,0 +1,32 @@
+services:
+  tftpd-hpa:
+    image: 3x3cut0r/tftpd-hpa:latest
+    environment:
+      TZ: Europe/Berlin
+      CREATE: 1
+      VERBOSE: 1
+    volumes:
+      - ./tftpd:/tftpdboot
+    ports:
+      - 69:69/udp
+  isc-dhcp-server:
+    network_mode: host
+    environment:
+      TZ: Europe/Berlin
+      CREATE: 1
+      VERBOSE: 1
+    volumes:
+      - ./dhcpd/dhcpd.conf:/etc/dhcp/
+    image: 3x3cut0r/isc-dhcp-server:latest
+  http:
+    image: httpd:trixie
+    ports:
+      - 80:80
+    volumes:
+      - ./www:/usr/local/apache2/htdocs
+
+  dns:
+    image: ubuntu/bind9
+    volumes:
+      - ./dns:/etc/bind
+    network_mode: host
