@@ -8,6 +8,6 @@
 
 zone "boot.netboot.xyz" {
 	type master;
-	file "/etc/bind/bd.boot.netboot.xyz";
+	file "/etc/bind/db.boot.netboot.xyz";
 };
 

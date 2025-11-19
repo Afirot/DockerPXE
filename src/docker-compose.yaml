@@ -6,17 +6,17 @@ services:
       CREATE: 1
       VERBOSE: 1
     volumes:
-      - ./tftpd:/tftpdboot
+      - ./tftp:/tftpboot
     ports:
       - 69:69/udp
   isc-dhcp-server:
     network_mode: host
     environment:
       TZ: Europe/Berlin
-      CREATE: 1
-      VERBOSE: 1
+      PROTOCOL: 4
+      IFACE: enp0s8
     volumes:
-      - ./dhcpd/dhcpd.conf:/etc/dhcp/
+      - ./dhcpd/dhcpd.conf:/etc/dhcp/dhcpd.conf
     image: 3x3cut0r/isc-dhcp-server:latest
   http:
     image: httpd:trixie
