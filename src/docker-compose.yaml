@@ -24,9 +24,3 @@ services:
       - 80:80
     volumes:
       - ./www:/usr/local/apache2/htdocs
-
-  dns:
-    image: ubuntu/bind9
-    volumes:
-      - ./dns:/etc/bind
-    network_mode: host
